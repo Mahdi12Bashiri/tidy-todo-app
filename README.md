@@ -2,7 +2,7 @@
 
 A modern, responsive task management app for organizing everyday work. Tidy brings task planning, calendar views, productivity insights, and personal preferences into one clean workspace.
 
-**Live demo:** https://modern-todo-app-616041.netlify.app  
+**Live demo:** https://my-tidy-app.netlify.app  
 **Source code:** https://github.com/Mahdi12Bashiri/tidy-todo-app
 
 ## Features
