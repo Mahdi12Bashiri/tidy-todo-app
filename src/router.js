@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 // Views are bundled eagerly: the app is small, and avoiding lazy chunks means a
 // tab left open across a deploy can never fail to load a page (e.g. the edit
 // page on mobile) because an old chunk filename no longer exists.
@@ -23,8 +23,16 @@ const routes = [
   { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFoundView, meta: { title: 'Page not found' } },
 ]
 
+// GitHub Pages hosts this project under /tidy-todo-app/ and does not provide
+// SPA rewrites for arbitrary paths. Hash history keeps client-side routes
+// working there, while Netlify keeps its existing clean URL history mode.
+const history =
+  import.meta.env.VITE_ROUTER_MODE === 'hash'
+    ? createWebHashHistory(import.meta.env.BASE_URL)
+    : createWebHistory(import.meta.env.BASE_URL)
+
 const router = createRouter({
-  history: createWebHistory(),
+  history,
   routes,
   scrollBehavior(to, from, saved) {
     if (saved) return saved
