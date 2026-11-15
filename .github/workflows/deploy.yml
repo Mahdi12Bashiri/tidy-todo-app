@@ -21,6 +21,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # The deploy API returned 404 even though the Pages UI source was set.
+      # Enable/initialize the Pages site with a repo-scoped PAT (PAGES_TOKEN).
+      - name: Configure and enable GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+          token: ${{ secrets.PAGES_TOKEN }}
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -36,7 +44,7 @@ jobs:
         run: npm run build -- --base=/tidy-todo-app/
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist
 
