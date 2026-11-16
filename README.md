@@ -2,7 +2,8 @@
 
 A modern, responsive task management app for organizing everyday work. Tidy brings task planning, calendar views, productivity insights, and personal preferences into one clean workspace.
 
-**Live demo:** https://my-tidy-app.netlify.app  
+**Live demo:** https://mahdi12bashiri.github.io/tidy-todo-app/  
+**Alternative demo (Netlify):** https://my-tidy-app.netlify.app  
 **Source code:** https://github.com/Mahdi12Bashiri/tidy-todo-app
 
 ## Features
@@ -38,7 +39,9 @@ A modern, responsive task management app for organizing everyday work. Tidy brin
 - [Vite](https://vite.dev/) — development server and build tooling
 - [Tailwind CSS v4](https://tailwindcss.com/) — styling
 - [Lucide](https://lucide.dev/) — icons via `lucide-vue-next`
-- [Netlify](https://www.netlify.com/) — hosting and deployment
+- [GitHub Pages](https://pages.github.com/) — static site hosting
+- [GitHub Actions](https://github.com/features/actions) — automated build and deployment
+- [Netlify](https://www.netlify.com/) — alternative hosting configuration
 
 ## Run locally
 
@@ -74,10 +77,15 @@ That means data belongs to the browser and device where it was created. It is no
 
 ## Deployment
 
-The project is configured for Netlify:
+The primary public deployment uses GitHub Pages and GitHub Actions:
+- Workflow: `.github/workflows/deploy.yml`
+- The workflow builds the app with the `/tidy-todo-app/` base path and hash-based routing, then publishes the `dist/` directory to GitHub Pages.
+- Every push to `main` triggers a new build and deployment; the workflow can also be started manually from the Actions tab.
+
+The project also retains its Netlify configuration as an alternative deployment target:
 - Build command: `npm run build`
 - Publish directory: `dist`
-- SPA fallback is configured in `netlify.toml` so nested application routes resolve correctly.
+- SPA fallback is configured in `netlify.toml` for nested application routes.
 
 ---
 
